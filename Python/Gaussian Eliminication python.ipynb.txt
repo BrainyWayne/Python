@@ -1,0 +1,155 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Number of rows4\n",
+      "Number of columns4\n",
+      "Enter matrixblock coefficient\n",
+      "index a[1,1]2\n",
+      "index a[1,2]3\n",
+      "index a[1,3]1\n",
+      "index a[1,4]4\n",
+      "b[1]: 20\n",
+      "index a[2,1]3\n",
+      "index a[2,2]4\n",
+      "index a[2,3]1\n",
+      "index a[2,4]8\n",
+      "b[2]: 40\n",
+      "index a[3,1]9\n",
+      "index a[3,2]8\n",
+      "index a[3,3]5\n",
+      "index a[3,4]1\n",
+      "b[3]: 30\n",
+      "index a[4,1]4\n",
+      "index a[4,2]7\n",
+      "index a[4,3]1\n",
+      "index a[4,4]2\n",
+      "b[4]: 34\n",
+      "[[2. 3. 1. 4.]\n",
+      " [3. 4. 1. 8.]\n",
+      " [9. 8. 5. 1.]\n",
+      " [4. 7. 1. 2.]]\n",
+      "dividing by zero: or division not possible\n",
+      "0.0\n",
+      "final matrixblock\n",
+      "[[  2.    3.    1.    4. ]\n",
+      " [  0.   -0.5  -0.5   2. ]\n",
+      " [  0.    0.    6.  -39. ]\n",
+      " [  0.    0.    0.  -15. ]]\n",
+      "final Vectors\n",
+      "[  20.           10.         -170.          -42.66666667]\n",
+      "answer\n",
+      "[ 61.16666667 -94.22222222 -18.11111111   0.        ]\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "C:\\Users\\franc\\Anaconda\\lib\\site-packages\\ipykernel_launcher.py:28: RuntimeWarning: divide by zero encountered in true_divide\n"
+     ]
+    }
+   ],
+   "source": [
+    "#Members\n",
+    "\n",
+    "#Francis Eshun            1649617\n",
+    "#Eze Chinaza Lauren       1649917\n",
+    "#Nicholas Nii Quaye       1657517\n",
+    "#Derrick Sconi            1660417\n",
+    "#Cedric Oppong            1655817\n",
+    "\n",
+    "\n",
+    "import numpy as np\n",
+    "m=int(input(\"Number of rows\"))\n",
+    "n=int(input(\"Number of columns\"))\n",
+    "matrixblock=np.zeros((m,n))\n",
+    "Vector=np.zeros((n))\n",
+    "x=np.zeros((m))\n",
+    "print(\"Enter matrixblock coefficient\")\n",
+    "for r in range(0,m):\n",
+    "    for c in range(0,n):\n",
+    "        matrixblock[(r),(c)]=(input(\"index a[\"+str(r+1)+\",\"+str(c+1)+\"]\"))\n",
+    "    Vector[(r)]=(input(\"b[\"+str(r+1)+\"]: \"))  \n",
+    "print(matrixblock)\n",
+    "\n",
+    "for k in range(0 ,m):\n",
+    "    for i in range(k+1,m):\n",
+    "        mFactor=matrixblock[i,k]/matrixblock[k,k]\n",
+    "        Vector[i]=Vector[i]-(mFactor*Vector[k]) \n",
+    "        for c in range(0,n):\n",
+    "            matrixblock[i,c]=matrixblock[i,c]-(mFactor*matrixblock[k,c])         \n",
+    "try:            \n",
+    "    x[m-1]=Vector[m-1]/matrixblock[m-1]\n",
+    "except Exception:\n",
+    "    print (\"dividing by zero: or division not possible\")\n",
+    "\n",
+    "\n",
+    "print(x[m-1])\n",
+    "\n",
+    "for r in range(m-2,-1,-1):\n",
+    "    sum=0\n",
+    "    for c in range(0,n):\n",
+    "        sum=sum+matrixblock[r,c]+x[c]\n",
+    "        x[r]=(Vector[r]-sum)/matrixblock[r,r]\n",
+    "        \n",
+    "        \n",
+    "print(\"final matrixblock\")\n",
+    "print(matrixblock)\n",
+    "print(\"final Vectors\")\n",
+    "print(Vector)\n",
+    "print(\"answer\")\n",
+    "print(x)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.7.1"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
